@@ -31,3 +31,4 @@ CREATE TABLE [Person](
 |DB|MySQL|SQL Server|
 |Table Schema|(bj4)|(bj4)|
 |new Response|Request.CreateResponse|new HttpResponseMessage()|
+|Get()|ArrayList<Person>|IEnumerable\<Person\>|
