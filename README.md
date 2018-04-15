@@ -17,7 +17,7 @@ CREATE TABLE [Person](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](50) NULL,
 	[LastName] [nvarchar](50) NULL,
-	[PayRate] [float] NULL,
+	[PayRate] [decimal](18, 2) NULL,
 	[StartDate] [datetime] NULL,
 	[updDate] [datetime] NULL
 ) ON [PRIMARY] 
