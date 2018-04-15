@@ -11,23 +11,17 @@ namespace FirstRESTServer.Controllers
     public class PersonController : ApiController
     {
         // GET: api/Person
-        public IEnumerable<string> Get()
+        public IEnumerable<Person> Get()
         {
-            return new string[] { "value1", "value2", "value3" };
+            PersonPersistence pp = new PersonPersistence();
+            return pp.getPerson().AsEnumerable();
         }
 
         // GET: api/Person/5
         public Person Get(int id)
         {
-            Person person = new Person()
-            {
-                ID = 0,
-                FirstName = "Test",
-                LastName = "People",
-                PayRate = 2.54,
-                StartDate = DateTime.Now,
-            };
-            //string str = "Search " + id.ToString() + " is found!";
+            PersonPersistence pp = new PersonPersistence();
+            Person person = pp.getPerson(id);
             return person;
         }
 
@@ -49,8 +43,21 @@ namespace FirstRESTServer.Controllers
         }
 
         // DELETE: api/Person/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
+            HttpResponseMessage response = new HttpResponseMessage();
+            PersonPersistence pp = new PersonPersistence();
+            bool existed = pp.delPerson(id);
+
+            if (existed)
+            {
+                response.StatusCode = HttpStatusCode.NoContent;
+            }
+            else
+            {
+                response.StatusCode = HttpStatusCode.NotFound;
+            }
+            return response;
         }
     }
 }
